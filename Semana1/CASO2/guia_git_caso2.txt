@@ -1,0 +1,13 @@
+Guía Git aplicada al Caso 2
+
+Para el Caso 2 se trabajó con una aplicación básica llamada apppersona.
+El proyecto contiene la clase Persona y la clase Caso2Persona.
+
+Se utilizó Git Bash para agregar los archivos, realizar commits y subir el avance al repositorio de GitHub.
+
+Comandos usados:
+git status
+git add src
+git commit -m "Version inicial app persona"
+git log --oneline
+git push origin main
