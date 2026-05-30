@@ -1,68 +1,66 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 public class ListaEstudiantes {
 
 	public static void main(String[] args) {
-		 Scanner sc = new Scanner(System.in);
+		 Scanner teclado = new Scanner(System.in);
 	        ArrayList<String> estudiantes = new ArrayList<>();
 
-	        int opcion;
+	        int opcion = 0;
 
 	        do {
-	            System.out.println("\n===== MENU =====");
-	            System.out.println("1. Agregar estudiante");
-	            System.out.println("2. Mostrar lista de estudiantes");
-	            System.out.println("3. Salir");
-	            System.out.print("Ingrese una opción: ");
-
 	            try {
-	                opcion = sc.nextInt();
-	                sc.nextLine(); 
+	                System.out.println("\n===== App Estudiante =====");
+	                System.out.println("1. Agregar estudiante");
+	                System.out.println("2. Mostrar lista");
+	                System.out.println("3. Salir");
+	                System.out.print("Seleccione una opción: ");
 
-	                switch (opcion) {
+	                opcion = Integer.parseInt(teclado.nextLine());
 
-	                    case 1:
-	                        System.out.print("Ingrese el nombre del estudiante: ");
-	                        String nombre = sc.nextLine();
+	                if (opcion == 1) {
 
-	                        if (nombre.trim().isEmpty()) {
-	                            System.out.println("Error: El nombre no puede estar vacío.");
-	                        } else {
-	                            estudiantes.add(nombre);
-	                            System.out.println("Estudiante agregado correctamente.");
+	                    System.out.print("Ingrese el nombre del estudiante: ");
+	                    String nombre = teclado.nextLine();
+
+	                    if (nombre.trim().isEmpty()) {
+	                        throw new Exception("El nombre no puede estar vacío.");
+	                    }
+
+	                    estudiantes.add(nombre);
+	                    System.out.println("Estudiante agregado correctamente.");
+
+	                } else if (opcion == 2) {
+
+	                    if (estudiantes.isEmpty()) {
+	                        System.out.println("No hay estudiantes registrados.");
+	                    } else {
+	                        System.out.println("\nLista de estudiantes:");
+
+	                        for (int i = 0; i < estudiantes.size(); i++) {
+	                            System.out.println((i + 1) + ". " + estudiantes.get(i));
 	                        }
-	                        break;
+	                    }
 
-	                    case 2:
-	                        System.out.println("\n===== LISTA DE ESTUDIANTES =====");
+	                } else if (opcion == 3) {
 
-	                        if (estudiantes.isEmpty()) {
-	                            System.out.println("No hay estudiantes registrados.");
-	                        } else {
-	                            for (int i = 0; i < estudiantes.size(); i++) {
-	                                System.out.println((i + 1) + ". " + estudiantes.get(i));
-	                            }
-	                        }
-	                        break;
+	                    System.out.println("Programa finalizado.");
 
-	                    case 3:
-	                        System.out.println("Programa finalizado.");
-	                        break;
+	                } else {
 
-	                    default:
-	                        System.out.println("Opción inválida. Intente nuevamente.");
+	                    System.out.println("Opción no válida.");
+
 	                }
 
-	            } catch (InputMismatchException e) {
-	                System.out.println("Error: Debe ingresar un número válido.");
-	                sc.nextLine();
-	                opcion = 0;
+	            } catch (NumberFormatException e) {
+	                System.out.println("Error: Debe ingresar un número.");
+	            } catch (Exception e) {
+	                System.out.println("Error: " + e.getMessage());
 	            }
 
 	        } while (opcion != 3);
 
-	        sc.close();
+	        teclado.close();
 	    }
 
 }
